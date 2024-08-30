@@ -2,10 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./MainSlider.css";
-import MainSliderContent from "./MainSliderContent";
+import "./Slider.css";
+import SliderContent from "./SliderContent";
 
-export default function MainSlider({tag, contents}) {
+export default function Slider({tag, contents}) {
     const settings = {
         arrows: true,
         dots: true,
@@ -23,7 +23,7 @@ export default function MainSlider({tag, contents}) {
             <div className="slider">
                 <Slider {...settings}>
                     {contents.map((item) => (
-                        <MainSliderContent key={item.id} item={item}/>
+                        <SliderContent key={item.id} item={item}/>
                     ))}
                 </Slider>
             </div>
