@@ -1,6 +1,5 @@
-import './App.css';
-import React from "react";
-import Root from "./pages/Root";
+import 'App.css';
+import Root from "pages/Root";
 
 function App() {
     return (

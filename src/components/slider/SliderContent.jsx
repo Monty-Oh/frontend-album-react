@@ -1,5 +1,4 @@
-import React from "react";
-import "./SliderContent.css";
+import "components/slider/SliderContent.css";
 
 export default function SliderContent({item}) {
     return (

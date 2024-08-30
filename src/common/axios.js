@@ -1,6 +1,6 @@
 import axios from "axios";
-import {DEFAULT_ERROR_CODE, DEFAULT_ERROR_MESSAGE} from "./constants";
-import {USER_LOGIN_URL} from "./urls";
+import {DEFAULT_ERROR_CODE, DEFAULT_ERROR_MESSAGE} from "common/constants";
+import {USER_LOGIN_URL} from "common/urls";
 
 //  로그인 요청
 const requestLogin = function (loginId, password) {
