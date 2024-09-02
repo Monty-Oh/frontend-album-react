@@ -1,0 +1,17 @@
+#image-container {
+}
+
+#logo-container {
+    height: 20px;
+    width: 100px;
+    display: flex;
+    padding: 18px 14px 18px 16px;
+}
+
+#react-logo-image {
+    object-fit: cover;
+}
+
+#react-log-text {
+    font-size: 20px;
+}

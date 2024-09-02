@@ -1,0 +1,11 @@
+.tag-container {
+    margin: 12px 12px 12px 0;
+}
+
+.tag-button {
+    font-size: 14px;
+    color: #0F0F0F;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+}
