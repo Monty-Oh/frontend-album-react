@@ -8,4 +8,22 @@
     height: 32px;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+    background-color: #F0F0F0;
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.tag-button:hover {
+    background-color: #E0E0E0;
+}
+
+.tag-button-dark {
+    font-size: 14px;
+    color: #F0F0F0;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #0F0F0F;
+    transition: background-color 0.1s ease, color 0.1s ease;
 }

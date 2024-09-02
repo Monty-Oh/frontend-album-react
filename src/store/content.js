@@ -19,9 +19,13 @@ const content = createSlice(
                 {id: 10, tag: 'MonsterHunter:World', src: 'assets/test_cat_4.jpeg', description: "test description"},
                 {id: 11, tag: 'MonsterHunter:World', src: 'assets/test_cat_5.jpeg', description: "test description"},
             ],
-            selected: "전체"
+            activeTag: "전체"
         },
-        reducers: {},
+        reducers: {
+            setActiveTag(state, action) {
+                state.activeTag = action.payload;
+            }
+        },
         extraReducers: (builder) => {
 
         }
@@ -40,17 +44,14 @@ export const selectGroupedData = createSelector(
     }
 )
 
-export const selectTags = createSelector(
-    [state => state.content.data, state => state.content.selected],
-    (data, selected) => {
+export const selectTagList = createSelector(
+    [state => state.content.data],
+    (data) => {
         const tagList = [...new Set(data.map((value) => value.tag))];
         tagList.unshift("전체");
-        const tagObject = {};
-        tagList.forEach((tag) => {
-            tagObject[tag] = tag === selected;
-        });
-        return tagObject;
+        return tagList;
     }
 )
 
+export const { setActiveTag } = content.actions;
 export default content.reducer;
