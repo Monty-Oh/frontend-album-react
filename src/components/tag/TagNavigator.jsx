@@ -1,7 +1,7 @@
 import Tag from "./Tag";
 import "components/tag/TagNavigator.css";
 import {useSelector} from "react-redux";
-import {selectGroupedData, selectTags} from "../../store/content";
+import {selectTags} from "../../store/content";
 
 export default function TagNavigator() {
     const tagObject = useSelector(state => selectTags(state));
