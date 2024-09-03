@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div className="header-container">
             <header>
-                <div className="header-container">
+                <div className="element-container">
                     <ReactLogo/>
                     <TagNavigator />
                 </div>

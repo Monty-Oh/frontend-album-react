@@ -1,5 +1,5 @@
 import {createSelector, createSlice} from "@reduxjs/toolkit";
-import {REDUX_CONTENT} from "../common/constants";
+import {ACTIVE_TAG_ALL, REDUX_CONTENT} from "../common/constants";
 
 const content = createSlice(
     {
@@ -19,7 +19,7 @@ const content = createSlice(
                 {id: 10, tag: 'MonsterHunter:World', src: 'assets/test_cat_4.jpeg', description: "test description"},
                 {id: 11, tag: 'MonsterHunter:World', src: 'assets/test_cat_5.jpeg', description: "test description"},
             ],
-            activeTag: "전체"
+            activeTag: ACTIVE_TAG_ALL
         },
         reducers: {
             setActiveTag(state, action) {
@@ -32,26 +32,35 @@ const content = createSlice(
     }
 );
 
-export const selectGroupedData = createSelector(
-    [state => state.content.data],
-    (data) => {
+/**
+ * 선택된 태그에 따라 데이터를 반환한다.
+ * "전체" 태그라면 모든 데이터를 반환한다.
+ */
+export const selectActiveTagData = createSelector(
+    [state => state.content.data, state => state.content.activeTag],
+    (data, activeTag) => {
         const groupedData = {};
         data.forEach((value) => {
-            if (groupedData[value.tag]) groupedData[value.tag].push(value);
-            else groupedData[value.tag] = [value];
+            if (activeTag === ACTIVE_TAG_ALL || activeTag === value.tag) {
+                if (groupedData[value.tag]) groupedData[value.tag].push(value);
+                else groupedData[value.tag] = [value];
+            }
         });
         return groupedData;
     }
 )
 
+/**
+ * 모든 태그의 리스트를 반환한다.
+ */
 export const selectTagList = createSelector(
     [state => state.content.data],
     (data) => {
         const tagList = [...new Set(data.map((value) => value.tag))];
-        tagList.unshift("전체");
+        tagList.unshift(ACTIVE_TAG_ALL);
         return tagList;
     }
 )
 
-export const { setActiveTag } = content.actions;
+export const {setActiveTag} = content.actions;
 export default content.reducer;
