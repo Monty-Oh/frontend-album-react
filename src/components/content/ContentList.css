@@ -1,0 +1,11 @@
+.list-name-container {
+    padding: 0 20px 20px 20px;
+    width: 300px;
+}
+
+.content-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    margin: 0 auto;
+}

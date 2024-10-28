@@ -1,7 +1,6 @@
-import React from "react";
-import "./MainSliderContent.css";
+import "components/slider/SliderContent.css";
 
-export default function MainSliderContent({item}) {
+export default function SliderContent({item}) {
     return (
         <div className="content-container">
             <div className="img-body">

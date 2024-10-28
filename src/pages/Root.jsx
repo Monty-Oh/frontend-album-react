@@ -1,7 +1,7 @@
-import Login from "./login/Login";
+import Login from "pages/login/Login";
+import Main from "pages/main/Main";
 import React from "react";
 import {useSelector} from "react-redux";
-import Main from "./main/Main";
 
 function Root() {
     //  로그인 유무에 따라 달라지는 페이지 렌더링

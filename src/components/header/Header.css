@@ -1,0 +1,9 @@
+.header-container {
+    background: white;
+    width: 100%;
+    position: fixed;
+}
+
+.element-container {
+    margin: 0 16px;
+}

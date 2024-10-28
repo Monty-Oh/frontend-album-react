@@ -9,3 +9,6 @@ export const REDUX_CONTENT = "content";
 //  errorCode
 export const DEFAULT_ERROR_CODE = "0000";
 export const DEFAULT_ERROR_MESSAGE = "Server Connection Error";
+
+//  activeTag
+export const ACTIVE_TAG_ALL = "전체";

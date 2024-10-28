@@ -1,0 +1,19 @@
+.content-list-item-container {
+    padding: 0 20px 50px 20px;
+}
+
+.item-container {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: pointer;
+}
