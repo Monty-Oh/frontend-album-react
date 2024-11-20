@@ -16,3 +16,7 @@ export const ACTIVE_TAG_ALL = "전체";
 
 //  header
 export const AUTHORIZATION = 'Authorization';
+export const REFRESH_TOKEN = "x-refresh-token";
+
+//  token
+export const ACCESS_TOKEN_START_WITH_STRING = "Bearer ";

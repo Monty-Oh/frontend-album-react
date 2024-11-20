@@ -6,6 +6,13 @@ import {contentSelector} from "../../store";
 
 export default function Content() {
     const groupedData = useSelector(state => contentSelector.selectActiveTagData(state));
+    // const dispatch = useDispatch();
+    // dispatch(
+    //     contentFetch.fetchAlbumList({
+    //         tags: []
+    //     })
+    // );
+
 
     return (
         <div className="content-container">

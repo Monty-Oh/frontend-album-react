@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
-import authReducer, {authAction, authFetch} from './auth';
+import authReducer, {authAction, authFetch, authSelector} from './auth';
 import contentReducer, {contentAction, contentFetch, contentSelector} from './content';
 
 export default configureStore({
@@ -19,7 +19,8 @@ export {
 //  Auth
 export {
     authAction,
-    authFetch
+    authFetch,
+    authSelector
 }
 
 

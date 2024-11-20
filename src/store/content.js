@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {ACTIVE_TAG_ALL, REDUX_CONTENT} from "../common/constants";
 import {requestAlbumList} from "../common/api/content";
+import api from "../common/api";
 
 const contentSlice = createSlice(
     {
@@ -78,14 +79,12 @@ const selectTagList = createSelector(
 const fetchAlbumList = createAsyncThunk(
     "content/album",
     async ({tags}) => {
-        const response = await requestAlbumList(tags);
+        const response = await api.content.requestAlbumList(tags);
         return response.data;
     }
 )
 
 export const contentSelector = {selectActiveTagData, selectTagList};
 export const contentFetch = {fetchAlbumList};
-// export const contentAction = {setActiveTag}
-// export const {setActiveTag} = contentSlice.actions;
 export const contentAction = contentSlice.actions;
 export default contentSlice.reducer;
