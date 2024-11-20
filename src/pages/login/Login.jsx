@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "pages/login/Login.css";
 import {useDispatch} from "react-redux";
-import {fetchLogin} from "../../store/auth";
+import {authFetch} from "../../store";
 
 export default function Login() {
     const [loginId, setLoginId] = useState("");
@@ -14,7 +14,7 @@ export default function Login() {
             return;
         }
         dispatch(
-            fetchLogin({
+            authFetch.fetchLogin({
                 id: loginId,
                 password: loginPassword
             })

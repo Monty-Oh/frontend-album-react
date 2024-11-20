@@ -1,15 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {requestLogin} from "../common/axios";
 import {LOCAL_STORAGE_KEY_ACCESS_TOKEN, LOCAL_STORAGE_KEY_REFRESH_TOKEN, REDUX_AUTH} from "../common/constants";
-
-//  RequestLogin
-export const fetchLogin = createAsyncThunk(
-    "auth/login",
-    async ({id, password}) => {
-        const response = await requestLogin(id, password);
-        return response.data;
-    }
-);
+import {requestLogin} from "../common/api/auth";
 
 const auth = createSlice({
     name: REDUX_AUTH,
@@ -18,7 +9,18 @@ const auth = createSlice({
         accessToken: localStorage.getItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN) || null,
         refreshToken: localStorage.getItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN) || null
     },
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            console.log("logout")
+            state.isLoggedIn = false;
+            state.accessToken = null;
+            state.refreshToken = null;
+
+            // localStorage에서 토큰 제거
+            localStorage.removeItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN);
+            localStorage.removeItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN);
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchLogin.fulfilled, (state, action) => {
@@ -31,4 +33,18 @@ const auth = createSlice({
     }
 });
 
+//  Fetch...
+/**
+ * 로그인 요청을 한다.
+ */
+const fetchLogin = createAsyncThunk(
+    "auth/login",
+    async ({id, password}) => {
+        const response = await requestLogin(id, password);
+        return response.data;
+    }
+);
+
+export const authAction = auth.actions;
+export const authFetch = {fetchLogin};
 export default auth.reducer;
