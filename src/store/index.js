@@ -1,28 +1,18 @@
 import {configureStore} from '@reduxjs/toolkit'
-import authReducer, {authAction, authFetch, authSelector} from './auth';
-import contentReducer, {contentAction, contentFetch, contentSelector} from './content';
+import authReducer, {auth} from './auth';
+import contentReducer, {content} from './content';
 
-export default configureStore({
+const storeConfig =  configureStore({
     reducer: {
         auth: authReducer,
         content: contentReducer
     }
 });
 
-//  Content
-export {
-    contentSelector,
-    contentFetch,
-    contentAction
+export default storeConfig;
+export const {dispatch} = storeConfig;
+
+export const store = {
+    content,
+    auth,
 }
-
-//  Auth
-export {
-    authAction,
-    authFetch,
-    authSelector
-}
-
-
-//  Store 의 Actions 함수가 필요할 때
-// setupAxiosResponseInterceptors(store.dispatch);

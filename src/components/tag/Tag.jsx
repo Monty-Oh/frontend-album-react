@@ -1,11 +1,11 @@
 import "components/tag/Tag.css";
-import {contentAction} from "../../store";
+import {store} from "../../store";
 import {useDispatch} from "react-redux";
 
 export default function Tag({name, activeTag}) {
     const dispatch = useDispatch();
     const handleClick = () => {
-        dispatch(contentAction.setActiveTag(name));
+        dispatch(store.content.action.setActiveTag(name));
     };
 
     return (

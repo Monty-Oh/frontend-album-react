@@ -2,8 +2,10 @@
 const baseUrl = "";
 
 //  USER
-export const USER_HEALTHCHECK_URL = baseUrl + "/user/monitor/healthcheck";
 export const USER_LOGIN_URL = baseUrl + "/user/v1/users/login";
 
 //  CONTENT
-export const CONTENT_ALBUM_LIST_URL = baseUrl + "/content/v1/album"
+export const CONTENT_ALBUM_LIST_URL = baseUrl + "/content/v1/album";
+
+//  AUTH
+export const AUTH_REFRESH_TOKEN = baseUrl + "/auth/v1/token";

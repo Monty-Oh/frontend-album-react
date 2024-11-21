@@ -6,31 +6,27 @@ import {
     REDUX_AUTH
 } from "../common/constants";
 import api from "../common/api";
+import utils from "../common/utils";
 
-const auth = createSlice({
+const authSlice = createSlice({
     name: REDUX_AUTH,
     initialState: {
-        isLoggedIn: localStorage.getItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN) !== null && localStorage.getItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN) !== null,
+        isLoggedIn: utils.token.getAccessToken() !== null && utils.token.getRefreshToken() !== null,
     },
     reducers: {
         logout: (state) => {
-            console.log("logout")
             state.isLoggedIn = false;
-            // state.accessToken = null;
-            // state.refreshToken = null;
-
-            // localStorage에서 토큰 제거
-            localStorage.removeItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN);
-            localStorage.removeItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN);
+            utils.token.deleteAccessToken();
+            utils.token.deleteRefreshToken();
         }
     },
     extraReducers: (builder) => {
         builder
+            //  Login
             .addCase(fetchLogin.fulfilled, (state, action) => {
-                state.isLoggedIn = action.payload.accessToken && action.payload.refreshToken;
-                localStorage.setItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN, action.payload.accessToken);
-                localStorage.setItem(LOCAL_STORAGE_KEY_REFRESH_TOKEN, action.payload.refreshToken);
-            });
+                state.isLoggedIn = true;
+            })
+        ;
     }
 });
 
@@ -48,9 +44,6 @@ const selectAccessToken = createSelector(
     }
 )
 
-/**
- * 리프레시 토큰을 반환한다.
- */
 const selectRefreshToken = createSelector(
     [state => state.auth.data],
     () => {
@@ -66,24 +59,33 @@ const selectRefreshToken = createSelector(
  * 로그인 요청을 한다.
  */
 const fetchLogin = createAsyncThunk(
-    "auth/login",
+    "user/login",
     async ({id, password}) => {
         const response = await api.auth.requestLogin(id, password);
+        utils.token.saveAccessToken(response.data.accessToken);
+        utils.token.saveRefreshToken(response.data.refreshToken);
         return response.data;
     }
 );
 
 /**
  * 인증 만료 시 재인증 요청을 한다.
+ * 재인증 요청 후 기존 요청을 다시 시도한다.
  */
 const fetchRefreshLogin = createAsyncThunk(
     "auth/refresh",
     async () => {
-
+        const refreshToken = utils.token.getRefreshToken();
+        const response = await api.auth.requestRefreshToken(refreshToken);
+        utils.token.saveAccessToken(response.data.accessToken);
+        utils.token.saveRefreshToken(response.data.refreshToken);
+        return response.data;
     }
 )
 
-export const authSelector = {selectAccessToken, selectRefreshToken};
-export const authAction = auth.actions;
-export const authFetch = {fetchLogin};
-export default auth.reducer;
+const selector = {selectAccessToken, selectRefreshToken};
+const action = authSlice.actions;
+const fetch = {fetchLogin, fetchRefreshLogin};
+
+export const auth = {selector, action, fetch};
+export default authSlice.reducer;

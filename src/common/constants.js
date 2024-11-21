@@ -15,8 +15,10 @@ export const AUTHENTICATION_EXPIRED_ERROR_CODE = "0102";
 export const ACTIVE_TAG_ALL = "전체";
 
 //  header
-export const AUTHORIZATION = 'Authorization';
-export const REFRESH_TOKEN = "x-refresh-token";
+export const AUTHORIZATION_HEADER = 'Authorization';
+export const REFRESH_TOKEN_HEADER = "x-refresh-token";
+export const CONTENT_TYPE_HEADER = "Content-Type";
+export const CONTENT_TYPE_DEFAULT_VALUE = "application/json";
 
 //  token
 export const ACCESS_TOKEN_START_WITH_STRING = "Bearer ";

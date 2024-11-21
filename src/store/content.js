@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {ACTIVE_TAG_ALL, REDUX_CONTENT} from "../common/constants";
-import {requestAlbumList} from "../common/api/content";
 import api from "../common/api";
 
 const contentSlice = createSlice(
@@ -33,7 +32,8 @@ const contentSlice = createSlice(
         extraReducers: (builder) => {
             builder
                 .addCase(fetchAlbumList.fulfilled, (state, action) => {
-                    console.log(state.payload);
+
+                    console.log(action.payload);
                 })
         }
     }
@@ -84,7 +84,9 @@ const fetchAlbumList = createAsyncThunk(
     }
 )
 
-export const contentSelector = {selectActiveTagData, selectTagList};
-export const contentFetch = {fetchAlbumList};
-export const contentAction = contentSlice.actions;
+const selector = {selectActiveTagData, selectTagList};
+const fetch = {fetchAlbumList};
+const action = contentSlice.actions;
+
+export const content = {selector, fetch, action};
 export default contentSlice.reducer;
