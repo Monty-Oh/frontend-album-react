@@ -1,5 +1,5 @@
 //  axios 외부 호출 URLS
-const baseUrl = "";
+const baseUrl = "/api";
 
 //  USER
 export const USER_LOGIN_URL = baseUrl + "/user/v1/users/login";
