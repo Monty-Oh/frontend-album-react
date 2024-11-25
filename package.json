@@ -21,7 +21,11 @@
     "start": "react-scripts start -p 8080",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:local": "react-scripts start -p 8080 --env=local",
+    "start:develop": "react-scripts start -p 8080 --env=develop",
+    "build:local": "react-scripts build --env=local",
+    "build:develop": "react-scripts build --env=develop"
   },
   "eslintConfig": {
     "extends": [
