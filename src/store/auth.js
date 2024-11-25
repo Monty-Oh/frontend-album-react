@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {
-    ACCESS_TOKEN_START_WITH_STRING,
+    ACCESS_TOKEN_START_WITH_STRING, HTTP_RESULT_KEY_ACCESS_TOKEN, HTTP_RESULT_KEY_REFRESH_TOKEN,
     LOCAL_STORAGE_KEY_ACCESS_TOKEN,
     LOCAL_STORAGE_KEY_REFRESH_TOKEN,
     REDUX_AUTH
@@ -62,8 +62,8 @@ const fetchLogin = createAsyncThunk(
     "user/login",
     async ({id, password}) => {
         const response = await api.auth.requestLogin(id, password);
-        utils.token.saveAccessToken(response.data.accessToken);
-        utils.token.saveRefreshToken(response.data.refreshToken);
+        utils.token.saveAccessToken(response.data[HTTP_RESULT_KEY_ACCESS_TOKEN]);
+        utils.token.saveRefreshToken(response.data[HTTP_RESULT_KEY_REFRESH_TOKEN]);
         return response.data;
     }
 );
@@ -77,8 +77,8 @@ const fetchRefreshLogin = createAsyncThunk(
     async () => {
         const refreshToken = utils.token.getRefreshToken();
         const response = await api.auth.requestRefreshToken(refreshToken);
-        utils.token.saveAccessToken(response.data.accessToken);
-        utils.token.saveRefreshToken(response.data.refreshToken);
+        utils.token.saveAccessToken(response.data[HTTP_RESULT_KEY_ACCESS_TOKEN]);
+        utils.token.saveRefreshToken(response.data[HTTP_RESULT_KEY_REFRESH_TOKEN]);
         return response.data;
     }
 )

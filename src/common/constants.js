@@ -22,3 +22,16 @@ export const CONTENT_TYPE_DEFAULT_VALUE = "application/json";
 
 //  token
 export const ACCESS_TOKEN_START_WITH_STRING = "Bearer ";
+
+//  Http Result Data Key
+////    Content
+export const HTTP_RESULT_KEY_ALBUM_LIST = "albumList";
+export const HTTP_RESULT_KEY_CONTENT_ID = "contentId";
+export const HTTP_RESULT_KEY_IMAGE_URL = "imageUrl";
+export const HTTP_RESULT_KEY_TITLE = "title";
+export const HTTP_RESULT_KEY_DESCRIPTION = "description";
+export const HTTP_RESULT_KEY_TAG_LIST = "tagList";
+
+////    Auth
+export const HTTP_RESULT_KEY_ACCESS_TOKEN = "accessToken";
+export const HTTP_RESULT_KEY_REFRESH_TOKEN = "refreshToken";
